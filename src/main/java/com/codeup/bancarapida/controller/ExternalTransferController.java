@@ -17,9 +17,9 @@ import com.codeup.bancarapida.entity.External_Transaction;
 import com.codeup.bancarapida.service.ExternalTransferService;
 
 @RestController
-@RequestMapping("/apirest")
+@RequestMapping("/api")
 public class ExternalTransferController {
-	
+
 	@Autowired
 	private ExternalTransferService externalTransferService;
 
@@ -28,17 +28,17 @@ public class ExternalTransferController {
 		return new ResponseEntity<>(externalTransferService.save(external_transaction), HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/getAll")
-	public ResponseEntity<List<External_Transaction>> findAll(){
+	@GetMapping(value="/get_ext_transactions")
+	public ResponseEntity<List<External_Transaction>> findAllTransactions(){
 		return new ResponseEntity<>(externalTransferService.findAll(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping(value="get_ext_transaction/{id}")
 	public ResponseEntity<External_Transaction> findById(@PathVariable Integer id){
-		return new ResponseEntity<>(externalTransferService.get(id), HttpStatus.OK);
+		return new ResponseEntity(externalTransferService.get(id), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("del_ext_transaction/{id}")
 	public ResponseEntity delete(@PathVariable Integer id) {
 		externalTransferService.delete(id);
 		return new ResponseEntity(HttpStatus.OK);

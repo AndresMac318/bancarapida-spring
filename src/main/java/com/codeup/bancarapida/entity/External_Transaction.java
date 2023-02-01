@@ -2,37 +2,58 @@ package com.codeup.bancarapida.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 //import java.time.LocalDateTime;
 
 @Entity
 @Table(name="extenaltransfer")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class External_Transaction {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	@Column
 	private Integer idAccount;
-    private String EANumber;
-    private String transactioType;
-    private String EAType;
-    private Integer amount = 0;
+	@Column
+	private String EANumber;
+	@Column
+	private String transactionType;
+	@Column
+	private String EAType;
+	@Column
+	private Integer amount = 0;
     //@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT-5")
     //https://programmerclick.com/article/6994892329/
-    private Date date;
-    private String status;
-    private String EAOwnerName;
-    private String EAOwnerId;
-    private String EAOwnerType;
-    private String description;
-    private String bankName;
+
+	@Column
+	private Date date;
+	@Column
+	private String status;
+	@Column
+	private String EAOwnerName;
+	@Column
+	private String EAOwnerId;
+	@Column
+	private String EAOwnerIdType;
+	@Column
+	private String description;
+	@Column
+	private String bankName;
     
     public External_Transaction() {
     }
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Integer getIdAccount() {
 		return idAccount;
@@ -46,24 +67,24 @@ public class External_Transaction {
 		return EANumber;
 	}
 
-	public void setEANumber(String eANumber) {
-		EANumber = eANumber;
+	public void setEANumber(String EANumber) {
+		this.EANumber = EANumber;
 	}
 
-	public String getTransactioType() {
-		return transactioType;
+	public String getTransactionType() {
+		return transactionType;
 	}
 
-	public void setTransactioType(String transactioType) {
-		this.transactioType = transactioType;
+	public void setTransactionType(String transactionType) {
+		this.transactionType = transactionType;
 	}
 
 	public String getEAType() {
 		return EAType;
 	}
 
-	public void setEAType(String eAType) {
-		EAType = eAType;
+	public void setEAType(String EAType) {
+		this.EAType = EAType;
 	}
 
 	public Integer getAmount() {
@@ -94,24 +115,24 @@ public class External_Transaction {
 		return EAOwnerName;
 	}
 
-	public void setEAOwnerName(String eAOwnerName) {
-		EAOwnerName = eAOwnerName;
+	public void setEAOwnerName(String EAOwnerName) {
+		this.EAOwnerName = EAOwnerName;
 	}
 
 	public String getEAOwnerId() {
 		return EAOwnerId;
 	}
 
-	public void setEAOwnerId(String eAOwnerId) {
-		EAOwnerId = eAOwnerId;
+	public void setEAOwnerId(String EAOwnerId) {
+		this.EAOwnerId = EAOwnerId;
 	}
 
-	public String getEAOwnerType() {
-		return EAOwnerType;
+	public String getEAOwnerIdType() {
+		return EAOwnerIdType;
 	}
 
-	public void setEAOwnerType(String eAOwnerType) {
-		EAOwnerType = eAOwnerType;
+	public void setEAOwnerIdType(String EAOwnerIdType) {
+		this.EAOwnerIdType = EAOwnerIdType;
 	}
 
 	public String getDescription() {
@@ -129,7 +150,4 @@ public class External_Transaction {
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
 	}
-    
-    
-
 }

@@ -21,9 +21,10 @@ public class ExternalTransferService {
 	public External_Transaction save(External_Transaction external_transaction) {
 		return externalTransferRepository.save(external_transaction);
 	}
-	
+
 	public External_Transaction get(Integer id) {
-		return externalTransferRepository.getReferenceById(id);
+		//return externalTransferRepository.getReferenceById(id);
+		return externalTransferRepository.getById(id);
 	}
 	
 	public void delete(Integer id) {
